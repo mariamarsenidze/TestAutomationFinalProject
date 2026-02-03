@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Parallel Suite" parallel="classes" thread-count="2">
+
+    <test name="Automation Tests">
+        <classes>
+            <class name="testautomation.UItests.AddProductTest"/>
+            <class name="testautomation.UItests.AddReviewTest"/>
+            <class name="testautomation.UItests.ContactFormTest"/>
+            <class name="testautomation.UItests.LoginIncorrectTest"/>
+            <class name="testautomation.UItests.LoginTest"/>
+            <class name="testautomation.UItests.LogOutTest"/>
+            <class name="testautomation.UItests.RegisterExistingTest"/>
+            <class name="testautomation.UItests.RegistrationTest"/>
+            <class name="testautomation.UItests.RemoveProductTest"/>
+            <class name="testautomation.UItests.SearchProductTest"/>
+
+
+        </classes>
+    </test>
+
+</suite>
