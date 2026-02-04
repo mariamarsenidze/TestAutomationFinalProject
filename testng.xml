@@ -9,8 +9,8 @@
             <class name="testautomation.UItests.AddReviewTest"/>
             <class name="testautomation.UItests.ContactFormTest"/>
             <class name="testautomation.UItests.LoginIncorrectTest"/>
-            <class name="testautomation.UItests.LoginTest"/>
             <class name="testautomation.UItests.LogOutTest"/>
+            <class name="testautomation.UItests.LoginTest"/>
             <class name="testautomation.UItests.RegisterExistingTest"/>
             <class name="testautomation.UItests.RegistrationTest"/>
             <class name="testautomation.UItests.RemoveProductTest"/>
