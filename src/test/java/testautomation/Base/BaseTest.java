@@ -13,8 +13,10 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    protected WebDriver driver;
+    // ThreadLocal driver – parallel execution
+    private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<>();
     protected WebDriverWait wait;
+
     protected RegisterSteps registerSteps;
     protected LoginSteps loginSteps;
     protected ProductSteps productSteps;
@@ -23,16 +25,21 @@ public class BaseTest {
     protected ContactSteps contactSteps;
     protected OneProductSteps oneProductSteps;
 
+    public WebDriver getDriver() {
+        return driverThread.get();
+    }
+
     @BeforeClass
     public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-popup-blocking");
 
-        driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driverThread.set(driver); // ThreadLocal set
 
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get("https://automationexercise.com/");
 
         removeGoogleAds();
@@ -43,13 +50,12 @@ public class BaseTest {
         cartSteps = new CartSteps(driver);
         homeSteps = new HomeSteps(driver);
         contactSteps = new ContactSteps(driver);
-        oneProductSteps=new OneProductSteps(driver);
+        oneProductSteps = new OneProductSteps(driver);
     }
-
 
     protected void removeGoogleAds() {
         try {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
+            JavascriptExecutor js = (JavascriptExecutor) getDriver();
             js.executeScript(
                     "var ads = document.querySelectorAll('ins.adsbygoogle, #aswift_0_host, #aswift_0_expand, .google-auto-placed');" +
                             "for (var i = 0; i < ads.length; i++) { ads[i].remove(); }"
@@ -61,8 +67,10 @@ public class BaseTest {
 
     @AfterClass
     public void tearDown() {
+        WebDriver driver = getDriver();
         if (driver != null) {
             driver.quit();
+            driverThread.remove();
         }
     }
 }

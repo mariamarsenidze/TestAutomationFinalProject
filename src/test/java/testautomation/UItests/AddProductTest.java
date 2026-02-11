@@ -31,7 +31,7 @@ public class AddProductTest extends BaseTest {
         productSteps.addProductToCart(1);
         homeSteps.clickCart();
 
-        List<WebElement> cartItems = driver.findElements(By.xpath("//tr[contains(@id,'product-')]"));
+        List<WebElement> cartItems = getDriver().findElements(By.xpath("//tr[contains(@id,'product-')]"));
         Assert.assertEquals(cartItems.size(), 2);
 
         for (WebElement item : cartItems) {

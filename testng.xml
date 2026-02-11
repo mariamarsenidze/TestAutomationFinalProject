@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Parallel Suite" parallel="classes" thread-count="9">
 
-<suite name="Parallel Suite" parallel="classes" thread-count="2">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="testautomation.Utils.TestListener"/>
+    </listeners>
 
     <test name="Automation Tests">
         <classes>
@@ -15,8 +19,14 @@
             <class name="testautomation.UItests.RegistrationTest"/>
             <class name="testautomation.UItests.RemoveProductTest"/>
             <class name="testautomation.UItests.SearchProductTest"/>
+        </classes>
+    </test>
 
-
+    <test name="API Tests">
+        <classes>
+            <class name="testautomation.APITests.BrandApiTests"/>
+            <class name="testautomation.APITests.ProductApiTests"/>
+            <class name="testautomation.APITests.UserApiTests"/>
         </classes>
     </test>
 

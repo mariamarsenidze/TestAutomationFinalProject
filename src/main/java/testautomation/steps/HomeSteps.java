@@ -16,7 +16,7 @@ public class HomeSteps {
 
     public HomeSteps(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         this.homePage = new HomePage();
     }
 
@@ -28,7 +28,9 @@ public class HomeSteps {
 
     @Step("Click Delete Account button")
     public HomeSteps clickDelete() {
-        driver.findElement(homePage.deleteAccountBtn).click();
+        wait.until(ExpectedConditions.elementToBeClickable(homePage.deleteAccountBtn))
+                .click();
+
         return this;
     }
 

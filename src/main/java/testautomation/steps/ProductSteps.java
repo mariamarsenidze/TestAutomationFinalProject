@@ -34,9 +34,9 @@ public class ProductSteps {
     }
 
     @Step("Click on search button")
-    public ProductSteps clickSearch() {
-        driver.findElement(productPage.searchButton).click();
-        return this;
+    public void clickSearch() {
+        wait.until(ExpectedConditions.elementToBeClickable(productPage.searchButton))
+                .click();
     }
 
     @Step("Add product at index {index} to cart")
