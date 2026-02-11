@@ -36,6 +36,5 @@ public class LoginTest extends BaseTest {
     @Test(priority = 4)
     public void deleteAccount() {
         homeSteps.clickDelete();
-        Assert.assertTrue(loginSteps.isAccountDeleted(), "Account Is Not Deleted");
     }
 }

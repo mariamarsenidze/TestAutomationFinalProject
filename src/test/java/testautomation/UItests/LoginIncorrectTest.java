@@ -28,6 +28,7 @@ public class LoginIncorrectTest extends BaseTest {
     public void fillForm() {
         loginSteps.inputEmail("blabla@gmail.com")
                 .inputPassword("blabla")
+                .submit()
                 .submit();
         Assert.assertTrue(loginSteps.isEmailIncorrect(), "Error message for incorrect email/password is not displayed");
     }

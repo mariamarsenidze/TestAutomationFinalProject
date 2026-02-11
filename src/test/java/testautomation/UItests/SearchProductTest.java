@@ -29,6 +29,7 @@ public class SearchProductTest extends BaseTest {
     public void searchProduct() {
         productSteps.inputProduct("Top")
                 .clickSearch();
+
         Assert.assertTrue(productSteps.isSearchedProductDisplayed(), "Searched Products title is not visible!");
 
         Assert.assertTrue(productSteps.getProductsCount() > 0, "No products found!");
